@@ -1,0 +1,141 @@
+<html>
+
+<head>
+	<title>WebGL - Canvas test</title>
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+	<script type="text/javascript" src="glMatrix.js"></script>
+	<script type="text/javascript" src="callbacks.js"></script>
+	<script type="text/javascript" src="glCourseBasis.js"></script>
+
+	<LINK rel="stylesheet" type="text/css" href="design.css"></script>
+
+</head>
+
+
+<body onload="webGLStart();">
+	
+	<t1>Projet M2 WebGL : affichage IRM</t1>
+
+	
+	<table>
+		<tr> 
+			<td>
+				<div>
+					<canvas id="WebGL-test" style="border: 3px solid black;" width="600" height="600"></canvas> 
+
+				</div>
+			</td>
+			<td>				
+			<div class="range-slider">
+				<label>Transparence</label>
+				<input class="range-slider__range" type="range" id="goal" value="0.8" oninput="setUAlpha(this.value)" min="0.0" max="1.0" step="0.01">
+				<span class="range-slider__value"><label id="lab">0.80</label></span>
+			</div>
+			<div class="range-slider">
+				<label>numero de coupe</label>
+				<input class="range-slider__range" type="range" id="coupe" value="0" min="0" max="24" step="1">
+				<span class="range-slider__value"><label id="numImg">0</label></span>
+			</div>
+			<br>
+			<div class="range-slider">
+				<label>Seuil</label>
+				<input class="range-slider__range" type="range" id="seuil" value="0.1" oninput="setUSeuil(this.value)" min="0.0" max="1.0" step="0.1">
+				<span class="range-slider__value"><label id="seuilVal">0.1</label></span>
+				</div>
+			<div>
+				<input type="checkbox" id="affiche" name="affichage" checked = true onclick="">
+						<label for="affichage">type d'affichage</label>
+			</div>
+			<div>
+				<label>couleur 1</label>
+                <input type="color" id="col1" value="#E50101" oninput="setCol1()">
+
+                <label>couleur 2</label>
+				<input type="color" id="col2" value="#01E501" oninput="setCol2()">
+				<label>couleur 3</label>
+				<input type="color" id="col3" value="#0101E5" oninput="setCol3()">
+				<label>couleur 4</label>
+				<input type="color" id="col4" value="#E501E5" oninput="setCol4()">
+				<label>couleur 5</label>
+                <input type="color" id="col5" value="#E5E501" oninput="setCol5()">
+			</div>
+			</td>
+			
+		
+
+		</tr>
+	</table>
+		
+				<script>
+				var sliderSeuil = document.getElementById("seuil");
+				var outputSeuil = document.getElementById("seuilVal");
+				outputSeuil.innerHTML = sliderSeuil.value;
+	
+				sliderSeuil.oninput = function() {
+				setUSeuil(this.value);
+				outputSeuil.innerHTML = this.value;
+				}
+				</script>
+				
+				<script>
+				var slider = document.getElementById("goal");
+				var output = document.getElementById("lab");
+				output.innerHTML = slider.value;
+	
+				slider.oninput = function affislideopa() {
+				setUAlpha(this.value);
+				output.innerHTML = this.value;
+				}
+				</script>
+				
+				<script>
+				var slider2 = document.getElementById("coupe");
+				var output2 = document.getElementById("numImg");
+				output2.innerHTML = slider2.value;
+
+				slider2.oninput = function() {
+				setIndexImg(this.value);
+				output2.innerHTML = this.value;
+				}
+				</script>
+				</tr>
+				<tr>
+					<div>
+						
+						<script>
+							var box = document.getElementById("affiche");
+						
+							box.oninput = function() {
+							if (box.checked) {
+								affichage = true;
+								console.log(affichage);
+
+							}
+							else {
+								affichage = false;
+								console.log(affichage);
+
+							}
+						}
+						</script>
+					</div>
+				</tr>
+		
+				<script>
+				// var slider = document.getElementById("goal");
+				// var output = document.getElementById("lab");
+				// output.innerHTML = slider.value;
+
+				slider.oninput = function affislideopa() {
+				setUAlpha(this.value);
+				output.innerHTML = this.value;}
+				</script>
+	
+		<br><br>
+	<button type="button" onclick="loadShaders('shader')">Load Shaders</button>
+	
+</body>
+
+
+</html>
